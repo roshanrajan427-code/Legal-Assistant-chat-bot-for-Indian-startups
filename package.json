@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.8.0",
+    "react-markdown": "^10.1.0",
+    "react-syntax-highlighter": "^16.1.1"
+  },
+  "devDependencies": {
+    "@types/react-syntax-highlighter": "^15.5.13",
+    "concurrently": "^10.0.5"
+  },
+  "scripts": {
+    "backend": "venv\\Scripts\\python.exe -m uvicorn main:app --reload --port 8000",
+    "frontend": "npm --prefix react-app run dev",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\""
+  }
+}
