@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 from typing import Iterable, Optional
 
 from dotenv import load_dotenv
@@ -8,7 +9,7 @@ from langchain_community.vectorstores import Chroma
 from langchain_core.prompts import PromptTemplate
 from tavily import TavilyClient
 
-load_dotenv()
+load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 
 
 # ---------------------------------------------------------
@@ -134,7 +135,7 @@ def _ensure_components() -> Optional[str]:
         print("Loading Chroma vector database...")
 
         vectorstore = Chroma(
-            persist_directory="./chroma_db",
+            persist_directory=str(Path(__file__).resolve().parent / "chroma_db"),
             embedding_function=_embeddings,
         )
 

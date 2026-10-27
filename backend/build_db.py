@@ -1,10 +1,13 @@
+from pathlib import Path
+
 from langchain_community.document_loaders import PyPDFDirectoryLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
 
 print("Loading PDFs...")
-loader = PyPDFDirectoryLoader("./data")
+backend_dir = Path(__file__).resolve().parent
+loader = PyPDFDirectoryLoader(str(backend_dir / "data"))
 documents = loader.load()
 
 print("Chunking...")
@@ -19,7 +22,7 @@ embeddings = HuggingFaceEmbeddings(
 Chroma.from_documents(
     documents=chunks,
     embedding=embeddings,
-    persist_directory="./chroma_db"
+    persist_directory=str(backend_dir / "chroma_db")
 )
 
 print("Database built successfully!")

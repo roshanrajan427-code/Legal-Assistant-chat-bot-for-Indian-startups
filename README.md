@@ -93,29 +93,25 @@ An AI-powered **Retrieval-Augmented Generation (RAG)** legal assistant built to 
 ```text
 legal_asistant_chtbot/
 │
-├── app.py
-├── main.py
-├── database.py
-├── models.py
-├── build_db.py
-├── requirements.txt
 ├── package.json
 ├── .env
 ├── .gitignore
 ├── README.md
-│
-├── data/
-│   └── Indian legal documents
-│
-├── chroma_db/
-│   └── Vector database
-│
-├── react-app/
+├── backend/
+│   ├── app.py
+│   ├── main.py
+│   ├── database.py
+│   ├── models.py
+│   ├── build_db.py
+│   ├── requirements.txt
 │   ├── src/
-│   ├── package.json
-│   └── vite.config.ts
-│
-└── chat.db
+│   ├── data/
+│   ├── chroma_db/
+│   └── chat.db
+└── frontend/
+    ├── src/
+    ├── package.json
+    └── vite.config.ts
 ```
 
 ---
@@ -175,7 +171,7 @@ Activate:
 ## 3. Install Python Dependencies
 
 ```powershell
-pip install -r requirements.txt
+pip install -r backend/requirements.txt
 ```
 
 If needed:
@@ -187,7 +183,7 @@ pip install fastapi uvicorn sqlalchemy langchain langchain-community langchain-o
 ## 4. Install Frontend Dependencies
 
 ```powershell
-cd react-app
+cd frontend
 npm install
 cd ..
 ```
@@ -302,7 +298,7 @@ GET /history/{session_id}
 If new PDFs are added to the `data` folder:
 
 ```powershell
-python build_db.py
+python backend/build_db.py
 ```
 
 This will:
